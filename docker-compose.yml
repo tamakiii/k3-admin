@@ -33,6 +33,7 @@ services:
     volumes:
       - .:/project:delegated
       - ./docker/mysql/conf.d/mylogin.cnf:/etc/mysql/conf.d/mylogin.cnf
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
       - mysql:/var/lib/mysql
     security_opt:
       - seccomp:unconfined
