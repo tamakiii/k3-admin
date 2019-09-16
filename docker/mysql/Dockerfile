@@ -1,6 +1,6 @@
 FROM mysql:8.0.17 AS production
 
-COPY conf.d/mysql.cnf /etc/mysql/conf.d/mysql.cnf
+COPY docker/mysql/conf.d/mysql.cnf /etc/mysql/conf.d/mysql.cnf
 
 # ---
 

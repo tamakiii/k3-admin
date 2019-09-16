@@ -7,7 +7,11 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php composer-setup.php --install-dir=/usr/local/sbin --filename=composer && \
     php -r "unlink('composer-setup.php');"
 
-WORKDIR /app
+COPY . /project
+
+WORKDIR /project
+
+RUN make install
 
 # ---
 

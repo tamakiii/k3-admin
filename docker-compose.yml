@@ -2,24 +2,27 @@ version: "3.4"
 services:
   php:
     build:
-      context: docker/php
+      context: .
+      dockerfile: docker/php/Dockerfile
       target: ${ENVIRONMENT:-production}
     volumes:
-      - .:/app:delegated
+      - .:/project:delegated
 
   nginx:
     build:
-      context: docker/nginx
+      context: .
+      dockerfile: docker/nginx/Dockerfile
       target: ${ENVIRONMENT:-production}
     ports:
       - ${PORT_HTTP:-8080}:80
     volumes:
-      - .:/app:delegated
+      - .:/project:delegated
       - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
 
   mysql:
     build:
-      context: docker/mysql
+      context: .
+      dockerfile: docker/mysql/Dockerfile
       target: ${ENVIRONMENT:-production}
     environment:
       MYSQL_ROOT_PASSWORD: password
@@ -28,7 +31,7 @@ services:
       MYSQL_PASSWORD: pass
       TZ: Asia/Tokyo
     volumes:
-      - .:/app:delegated
+      - .:/project:delegated
       - ./docker/mysql/conf.d/mylogin.cnf:/etc/mysql/conf.d/mylogin.cnf
       - mysql:/var/lib/mysql
     security_opt:
