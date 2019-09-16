@@ -21,6 +21,12 @@ class Frame
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Medium", inversedBy="frames")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $medium;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +40,18 @@ class Frame
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getMedium(): ?Medium
+    {
+        return $this->medium;
+    }
+
+    public function setMedium(?Medium $medium): self
+    {
+        $this->medium = $medium;
 
         return $this;
     }
