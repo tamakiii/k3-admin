@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ordar index{% endblock %}
+
+{% block body %}
+    <h1>Ordar index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ordar in ordars %}
+            <tr>
+                <td>{{ ordar.id }}</td>
+                <td>{{ ordar.name }}</td>
+                <td>
+                    <a href="{{ path('ordar_show', {'id': ordar.id}) }}">show</a>
+                    <a href="{{ path('ordar_edit', {'id': ordar.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ordar_new') }}">Create new</a>
+{% endblock %}
