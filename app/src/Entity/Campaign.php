@@ -21,6 +21,12 @@ class Campaign
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ordar", inversedBy="campaigns")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ordar;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +40,18 @@ class Campaign
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getOrdar(): ?Ordar
+    {
+        return $this->ordar;
+    }
+
+    public function setOrdar(?Ordar $ordar): self
+    {
+        $this->ordar = $ordar;
 
         return $this;
     }
