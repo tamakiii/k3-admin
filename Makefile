@@ -1,8 +1,10 @@
-install: \
-	app/vendor
 
-app/vendor:
-	make -C app vendor
+install: \
+	.env
+
+.env:
+	touch $@
+	echo "ENVIRONMENT=production" >> $@
 
 clean:
-	make -C app clean
+	rm -rf .env

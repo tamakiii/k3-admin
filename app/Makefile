@@ -1,6 +1,9 @@
 install: \
 	vendor
 
+test:
+	bin/phpunit
+
 vendor:
 	composer install
 

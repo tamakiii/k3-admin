@@ -32,7 +32,8 @@ services:
       TZ: Asia/Tokyo
     volumes:
       - .:/project:delegated
-      - ./docker/mysql/conf.d/mylogin.cnf:/etc/mysql/conf.d/mylogin.cnf
+      - ./docker/mysql/my.cnf:/root/.my.cnf
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
       - mysql:/var/lib/mysql
     security_opt:
       - seccomp:unconfined
