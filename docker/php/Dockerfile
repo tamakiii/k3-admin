@@ -9,7 +9,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 
 COPY . /project
 
-WORKDIR /project
+WORKDIR /project/app
 
 RUN make install
 
