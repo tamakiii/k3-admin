@@ -38,6 +38,14 @@ services:
     security_opt:
       - seccomp:unconfined
 
+  node:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+      target: ${ENVIRONMENT:-production}
+    volumes:
+      - .:/project:delegated
+
 volumes:
   mysql:
 
