@@ -15,9 +15,11 @@ services:
       target: ${ENVIRONMENT:-production}
     ports:
       - ${PORT_HTTP:-8080}:80
+      - ${PORT_HTTP_FRONT:-8081}:81
     volumes:
       - .:/project:delegated
       - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/conf.d/front.conf:/etc/nginx/conf.d/front.conf
 
   mysql:
     build:
@@ -37,6 +39,14 @@ services:
       - mysql:/var/lib/mysql
     security_opt:
       - seccomp:unconfined
+
+  node:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+      target: ${ENVIRONMENT:-production}
+    volumes:
+      - .:/project:delegated
 
 volumes:
   mysql:
